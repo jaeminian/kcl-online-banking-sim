@@ -1,0 +1,31 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!--Display the page's path-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+    <li class="breadcrumb-item"><a href="<%= transaction_admins_path %>">Manage Transactions</a></li>
+    <li class="breadcrumb-item"><a href="#">Delete</a></li>
+  </ol>
+</nav>
+
+<!--Display the delete form-->
+<div class="row mt-5">
+  <div class="col-12">
+    <div class="card ">
+      <div class="card-header">
+        <h2>Delete Transaction</h2>
+      </div>
+      <div class="card-body">
+        <%= form_for(@transaction,:url => transaction_admin_path(@transaction) , :method => 'delete') do |f| %>
+          <p>Are you sure you want to delete this transaction </p>
+          <h3><%= @transaction.id %> ?</h3>
+          <div class="form-buttons">
+            <%= f.submit "Yes, Delete this Transaction", class: 'btn btn-danger'  %>
+          </div>
+          <%= link_to("No, Take me back", transaction_admins_path, :class => 'btn btn-success') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

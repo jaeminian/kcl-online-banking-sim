@@ -1,0 +1,2 @@
+module CurrencyAdminsHelper
+end

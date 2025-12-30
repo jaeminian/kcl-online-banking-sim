@@ -1,0 +1,122 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<div class="toRemHomePage row mt-5">
+</div>
+<!-- Footer -->
+<footer class="page-footer footer-back-color-rails  font-small pt-4 mt-auto">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="footer-text-color-rails row">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Content -->
+        <h5 class="font-weight-bold text-uppercase mb-4 ">ABOUT</h5>
+        <p>Bank Jackal is one of the world’s largest banking and financial services organisations.</p>
+        <p>We serve more than 4 million customers through our vast global business network. Get in touch today to learn more.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mb-4">BANKING</h5>
+
+        <ul class="list-unstyled">
+          <% bankingHolder = [
+              ["/login", "LOGIN"],
+              [accounts_path, "ACCOUNTS"],
+              ["/contact", "CONTACT"],
+              ["/about", "ABOUT"]
+          ] %>
+
+          <% bankingHolder.each do |m| %>
+              <li>
+                <p>
+                  <a href=<%= m[0] %>><%= m[1] %></a>
+                </p>
+              </li>
+          <% end %>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Contact details -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
+
+        <ul class="list-unstyled">
+					<!-- An array of contacts in the form of [style, address] -->
+          <% addressHolder = [
+              ["fas fa-home mr-3", " 1 Jackal Street, Kensington, London UK"],
+              ["fas fa-envelope mr-3", " info@jackal.com"],
+              ["fas fa-phone mr-3", " + 44 739 3355 478"],
+              ["fas fa-print mr-3", " 08005555"]
+          ] %>
+
+					<!-- Display each contact in the array -->
+          <% addressHolder.each do |m| %>
+              <li>
+                <p>
+                  <i class="<%= m[0] %>"></i><%= m[1] %></p>
+                </p>
+              </li>
+          <% end %>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+        <!-- Social buttons -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
+
+				<!-- An array of socials in the form of [style, icon] -->
+        <% socialHolder = [
+          ["btn-floating btn-fb", "fab fa-facebook-f"],
+          ["btn-floating btn-tw", "fab fa-twitter"],
+          ["btn-floating btn-gplus", "fab fa-google-plus-g"],
+          ["btn-floating btn-dribbble", "fab fa-dribbble"]
+        ] %>
+
+				<!-- Display each social in the array -->
+        <% socialHolder.each do |m| %>
+          <a type="button" class="<%= m[0] %>">
+            <i class="<%= m[1] %>"></i>
+          </a>
+        <% end %>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> Big Bank Jackal</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

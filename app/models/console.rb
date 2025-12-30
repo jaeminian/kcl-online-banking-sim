@@ -1,0 +1,3 @@
+class Console < ApplicationRecord
+    
+end

@@ -1,0 +1,39 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Breadcrumb trail under header -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= user_admins_path %>">Manage Users</a></li>
+        <li class="breadcrumb-item"><a href="#">Edit</a></li>
+    </ol>
+</nav>
+
+
+<!-- Section: Content -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card ">
+
+            <div class="card-header">
+                <h2>Update User</h2>
+            </div>
+
+            <div class="card-body">
+                <!-- Check for errors-->
+                <%= render 'error_user_admin' %>
+
+                <!-- The form for updating this user -->
+                <%= form_for(@user, :url => user_admin_path(@user)) do |f| %>
+                <!-- Partial form with user text fields -->
+                <%= render(:partial=> 'form', :locals => {:f => f}) %>
+                <div class="form-buttons">
+                    <%= f.submit "Update User", class: 'btn btn-warning'  %>
+                </div>
+
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+## Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) 
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+visionpulse:
+  fname: vision
+  lname: pulse
+  username: visionpulse
+  email: vision@jackal.com
+  password_digest: <%= BCrypt::Password.create('abcdef123') %>
+  admin: false
+  securelogin: "0"
+
+supercarboy:
+  fname: supercar
+  lname: boy
+  username: supercarboy
+  email: supercarboy@jackal.com
+  password_digest: <%= BCrypt::Password.create('abcdef123') %>
+  admin: false
+  securelogin: <%= BCrypt::Password.create('abcd') %>
+
+superuser:
+  fname: super
+  lname: user
+  username: superuser
+  email: admin@jackal.com
+  password_digest: <%= BCrypt::Password.create('abcdef123') %>
+  admin: true
+  securelogin: "0"
+
+noaccountuser:
+  fname: point
+  lname: blank
+  username: noaccountuser
+  email: pblank@jackal.com
+  password_digest: <%= BCrypt::Password.create('abcdef123') %>
+  admin: false
+  securelogin: "0"

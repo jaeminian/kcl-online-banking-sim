@@ -1,0 +1,68 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<header>
+
+  <nav class="navbar fixed-top navbar-expand-lg header-back-color-rails navbar-dark  scrolling-navbar">
+    <a class="navbar-brand" href="/"> <%= image_tag "logo.png", style: 'width:160px;' %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="<%= root_path %>">Home</a>
+        </li>
+
+            <% if is_check_admin? %>
+								<!-- Links for an admin -->
+                <% navHolder = [
+                  ["Admin Console", '/admin'],
+                  ["Manage Accounts", account_admins_path],
+                  ["Manage Transaction", transaction_admins_path],
+                  ["Manage Users", user_admins_path],
+                  ["Manage Currency", currency_admins_path]
+                ] %>
+
+            <% elsif logged_in? %>
+								<!-- Links for a personal banking user -->
+                <% navHolder = [
+                  ["My Accounts", accounts_path]
+                ] %>
+
+
+            <% else %>
+								<!-- Links for a user when not logged in -->
+                <% navHolder = [
+                  ["Current Account", "/current"],
+                  ["Credit Cards", "/cards/credit"],
+                  ["About", "/about"],
+                  ["Contact", "/contact"]
+                ] %>
+
+            <% end %>
+
+						<!-- Display each link according to the current login setting -->
+            <% navHolder.each do |m| %>
+              <li class="nav-item"><%= link_to m[0], m[1], class: "nav-link" %></li>
+            <% end %>
+
+      </ul>
+      <ul class="navbar-nav nav-flex-icons">
+						<!-- Allow a logged in user to view their profile, and an option to log out -->
+            <% if logged_in? %>
+                <li class="nav-item">
+                    <a href="/profile" class="nav-link"><i class="fas fa-user"></i>
+                        <span class="clearfix d-none d-sm-inline-block">My Profile</span></a>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Log out", logout_path, class: "nav-link", method: :delete %>
+                </li>
+            <% else %>
+                <li class="nav-item"><%= link_to "Log in", login_path, class: "nav-link" %></li>
+            <% end %>
+      </ul>
+    </div>
+  </nav>
+
+</header>

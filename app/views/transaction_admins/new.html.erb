@@ -1,0 +1,31 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!--Display the page's path-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+    <li class="breadcrumb-item"><a href="<%= transaction_admins_path %>">Manage Transactions</a></li>
+    <li class="breadcrumb-item"><a href="#">New</a></li>
+  </ol>
+</nav>
+
+<!--Display the new form-->
+<div class="row mt-5">
+  <div class="col-12">
+    <div class="card ">
+      <div class="card-header">
+        <h2>Create Transaction</h2>
+      </div>
+      <div class="card-body">
+        <!-- Displays validation errors -->
+        <%= render 'error_acc_admin' %>
+        <%= form_for(@transaction, :url => transaction_admins_path, :method => "POST") do |f| %>
+        <!--Partial for receiver, amount and account_id input-->
+        <%= render(:partial => 'form', :locals => {:f => f}) %>
+        <br>
+        <button class="btn btn-success btn-block" type="submit">Create Transaction</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

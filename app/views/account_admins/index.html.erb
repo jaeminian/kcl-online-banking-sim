@@ -1,0 +1,78 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= account_admins_path %>">Manage Accounts</a></li>
+    </ol>
+</nav>
+
+<div class="jumbotron">
+    <h2 class="h1-responsive">Manage Accounts</h2>
+    <p class="lead">Add/Edit/Delete accounts from this page.</p>
+    <hr class="my-2">
+    <p>Click below to add a new account.
+    </p>
+    <%= link_to("Add New Account", new_account_admin_path, :class => 'btn btn-success btn-lg') %>
+
+</div>
+
+
+<div class="accounts index">
+    <table id="masterHolder" class="listing table table-bordered" summary="Account list">
+        <!-- Table header cells -->
+        <thead class="black white-text">
+            <tr>
+                <th>#</th>
+                <th>Account Name</th>
+                <th>Account Number</th>
+                <th>Sort Code</th>
+                <th>User Name</th>
+                <th>Currency</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <!-- Records for the table -->
+        <tbody>
+            <!-- Display values for every account in the database -->
+            <% @accounts.each do |account| %>
+            <tr>
+                <td><%= account.id %></td>
+                <td><%= account.accname %></td>
+                <td><%= account.accnumber %></td>
+                <td><%= account.sortcode %></td>
+                <td><%= User.find(account.user_id).fname %></td>
+                <td><%= Currency.find(account.curr_id).shortname %></td>
+                <!-- Show, edit and delete links for an account-->
+                <td class="actions">
+                    <a href="<%= account_admin_path(account) %>"><button type="button" class="action show btn btn-sm btn-primary">Show</button></a>
+                    <a href="<%= edit_account_admin_path(account) %>"><button type="button" class="action edit btn btn-sm btn-warning">Edit</button></a>
+                    <a href="<%= delete_account_admin_path(account) %>"><button type="button" class="action edit btn btn-sm btn-danger">Close</button></a>
+                    <%= form_with url: "/transactions/#{account.id}/random", method: :patch, local: true  do |form| %>
+                    <button type="submit " class="btn btn-sm btn-default">Create 10 Transactions</button>
+                    <% end %>
+
+
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var dataTable = null;
+    $(document).ready(function() {
+        dataTable = $('#masterHolder').DataTable({
+            "order": [
+                [4, "asc"]
+            ]
+        });
+        document.addEventListener("turbolinks:before-cache", function() {
+            if (dataTable !== null) {
+                dataTable.destroy()
+                dataTable = null
+            }
+        })
+    });
+</script>

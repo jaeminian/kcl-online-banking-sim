@@ -1,0 +1,64 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Breadcrumb trail under header -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= user_admins_path %>">Manage Users</a></li>
+        <li class="breadcrumb-item"><a href="#">View</a></li>
+    </ol>
+</nav>
+
+
+<!-- Section: Content -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card ">
+
+            <div class="card-header">
+                <h2>View User</h2>
+            </div>
+
+            <div class="card-body">
+                <div class="users show">
+                    <!-- List details about this user -->
+                    <table class="table" summary="User detail view">
+                        <tr>
+                            <th>#</th>
+                            <td><%= @user.id %></td>
+                        </tr>
+                        <tr>
+                            <th>First Name</th>
+                            <td><%= @user.fname %></td>
+                        </tr>
+                        <tr>
+                            <th>Last Name</th>
+                            <td><%= @user.lname %></td>
+                        </tr>
+                        <tr>
+                            <th>Username</th>
+                            <td><%= @user.username %></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td><%= @user.email %></td>
+                        </tr>
+                        <tr>
+                            <th>Admin</th>
+                            <td><%= @user.admin %></td>
+                        </tr>
+                        <tr>
+                            <th>Created At</th>
+                            <td><%= @user.created_at %></td>
+                        </tr>
+                        <tr>
+                            <th>Updated At</th>
+                            <td><%= @user.updated_at %></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

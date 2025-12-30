@@ -1,0 +1,35 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= accounts_path %>">Online Banking Portal</a></li>
+        <li class="breadcrumb-item"><a href="/transactions/<%= @account.id %>"><%= @account.accname %></a></li>
+        <li class="breadcrumb-item"><a href="#">Edit </a></li>
+    </ol>
+</nav>
+
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <div class="card ">
+            <div class="card-header">
+                <h2>Update Account Details</h2>
+            </div>
+            <div class="card-body">
+                <!-- Renders the partial _error_acc.html.erb -->
+                <%= render 'error_acc' %>
+
+                <!-- An input form to update an account -->
+                <%= form_for(@account, :url => account_path(@account), class: "text-center border border-light p-5") do |f| %>
+                <label style="">Account Name</label>
+                <%= f.text_field(:accname, class: "form-control mb-4", placeholder: "Account Name") %>
+
+                <label>Currency</label>
+                <!-- A dropdown list of all the currencies in the database -->
+                <%= collection_select(:account, :curr_id, Currency.all, :id, :shortname, {},{class: "form-control mb-4"}) %>
+
+                <button class="btn btn-warning btn-block" type="submit">Update</button>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+// Place all the styles related to the TransactionAdmins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+#transactions {
+    margin: auto;
+    padding: 8px;
+    width: 100%
+}
+
+#transaction {
+    margin: auto;
+    padding: 8px;
+    width: 100%
+}
+
+
+/* Have header be different background-color*/
+
+#transactions>thead,
+#transactions>th {
+    background-color: #eae0d5
+}
+
+#tr_name {
+    background-color: #eae0d5;
+    width: 15%;
+    border-style: solid;
+    border-width: 1px
+}
+
+#tr_button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 80%;
+    background-color: #eae0d5;
+    border-radius: 25px;
+    display: table;
+    float: left
+}

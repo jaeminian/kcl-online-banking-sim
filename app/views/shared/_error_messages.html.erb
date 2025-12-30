@@ -1,0 +1,14 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@user.errors.count, "error") %>.<br>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+        <li class='text-danger'><%= msg %></li>
+        <% end %>
+        </ul>
+    </div>
+  </div>
+<% end %>

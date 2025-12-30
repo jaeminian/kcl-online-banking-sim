@@ -1,0 +1,71 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Breadcrumb trail under header -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= currency_admins_path %>">Manage Currencies</a></li>
+    </ol>
+</nav>
+
+
+<!-- Section: Content -->
+<div class="jumbotron">
+    <h2 class="h1-responsive">Manage Currencies</h2>
+    <hr class="my-2">
+    <p>Click below to add a new Currency.
+    </p>
+    <%= link_to("Add New Currency", new_currency_admin_path, :class => 'btn btn-success btn-lg') %>
+</div>
+
+<!-- Section: Content -->
+<div class="table-responsive currencies index">
+
+    <!-- List of all currencies in the database -->
+    <table id="masterHolder" class="table listing" summary="Currency List">
+
+        <thead class="black white-text">
+            <tr>
+                <th>#</th>
+                <th>Currency Big Name</th>
+                <th>Currency Short Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @currencies.each do |currency| %>
+            <tr>
+                <td><%= currency.id %></td>
+                <td><%= currency.bigname %></td>
+                <td><%= currency.shortname %></td>
+                <!-- Buttons for all currency_admin actions -->
+                <td class="actions">
+                    <a href="<%= currency_admin_path(currency) %>"><button type="button" class="action show btn btn-sm btn-primary">Show</button></a>
+                    <a href="<%= edit_currency_admin_path(currency) %>"><button type="button" class="action edit btn btn-sm btn-warning">Edit</button></a>
+                    <a href="<%= delete_currency_admin_path(currency) %>"><button type="button" class="action edit btn btn-sm btn-danger">Delete</button></a>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    var dataTable = null;
+    $(document).ready(function() {
+
+        dataTable = $('#masterHolder').DataTable({
+            "order": [
+                [0, "asc"]
+            ]
+        });
+        document.addEventListener("turbolinks:before-cache", function() {
+            if (dataTable !== null) {
+                dataTable.destroy()
+                dataTable = null
+            }
+        })
+    });
+</script>

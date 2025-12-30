@@ -1,0 +1,93 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!--Display the page's path-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= accounts_path %>">Online Banking Portal</a></li>
+        <li class="breadcrumb-item"><a href="#"><%= @account.accname %></a></li>
+    </ol>
+</nav>
+
+<!--Display account information-->
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= @account.accname %></h5>
+        <p class="card-text">Number: <strong><%= @account.accnumber %></strong></p>
+        <p class="card-text">Currency: <strong><%= Currency.find(@account.curr_id).shortname %></strong></p>
+        <p class="card-text">Sort-Code: <strong><%= @account.sortcode %></strong></p>
+        <p class="card-text">User Name: <strong><%= User.find(@account.user_id).fname %></strong></p>
+        <p class="card-text">Created: <strong><%= @account.created_at %></strong></p>
+        <p class="card-text">Updated: <strong><%= @account.updated_at %></strong></p>
+
+        <a href="<%= edit_account_path(@account) %>"><button type="button" class="action edit btn btn-md btn-warning">Edit</button></a>
+
+        <a href="/transfers/<%= @account.id  %>/new"><button type="button" class="action show btn btn-md btn-success">Transfer Money</button></a>
+    </div>
+</div>
+
+<hr>
+
+<!-- Div with balance information-->
+<div id="transactions_functionality">
+    <h3 id="balance">Balance: <span class="badge badge-primary"><%= @balance %></span></h3>
+</div>
+
+<br>
+
+<!-- Transactions table for current account -->
+<table id="masterHolder" class="table table-bordered">
+    <thead class="black white-text">
+        <tr>
+            <th>Date</th>
+            <th>Receiver Name</th>
+            <th>Currency</th>
+            <th>Credits</th>
+            <th>Debits</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @transactions.each do |t| %>
+        <tr>
+            <th scope="row"><%= t.created_at %></th>
+            <td><%= t.receiver %></td>
+            <td>
+                <%= @currency.shortname %>
+            </td>
+            <td>
+                <!--Credits are stored as negative numbers-->
+                <% if t.amount < 0 %>
+                <%= t.amount * -1 %>
+                <% else %>
+                -
+                <% end %>
+            </td>
+            <td>
+                <!--Debits are stored as positive numbers-->
+                <% if t.amount >= 0 %>
+                <%= t.amount %>
+                <% else %>
+                -
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<script>
+    var dataTable = null;
+    $(document).ready(function() {
+        dataTable = $('#masterHolder').DataTable({
+            "order": [
+                [0, "desc"]
+            ]
+        });
+        document.addEventListener("turbolinks:before-cache", function() {
+            if (dataTable !== null) {
+                dataTable.destroy()
+                dataTable = null
+            }
+        })
+    });
+</script>

@@ -1,0 +1,91 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<%
+    # In case user submits form without a value, the stored value is 0. 
+    # if the Stored value is less than 0 then preselect the Credit Option
+    # Else Select the debit option
+    amount = @transfer.amount
+    if(!@transfer.amount)
+    amount = 0
+    end
+    if amount != (amount).abs
+        preselected_val = 1
+        nameVal = "Sender Name"
+    else
+        preselected_val = 0
+        nameVal = "Receiver Name"
+    end
+    amount = (amount).abs
+%>
+
+<!-- Breadcrumb trail under header -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= accounts_path %>">Online Banking Portal</a></li>
+        <li class="breadcrumb-item"><a href="/transactions/<%= @account.id %>"><%= @account.accname %></a></li>
+        <li class="breadcrumb-item"><a href="#">Transfers </a></li>
+    </ol>
+</nav>
+
+<!-- Section: Content -->
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <div class="card ">
+
+            <div class="card-header">
+                <h2>Transfer Money</h2>
+            </div>
+
+            <div class="card-body">
+                <!-- Check for errors -->
+                <% if @transfer.errors.any? %>
+                <div id="error_explanation">
+                    <div class="alert alert-danger">
+                        The form contains <%= pluralize(@transfer.errors.count, "error") %>.<br>
+                        <ul>
+                            <% @transfer.errors.full_messages.each do |msg| %>
+                            <li class='text-danger'><%= msg %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+                <% end %>
+
+                <p>Money will be (debited from / credited to) Account Number: <%= @account.accnumber %></p>
+
+                <hr>
+
+                <!-- The form for transfer -->
+                <%= form_for(@transfer, :url => "/transfers/#{@account.id}/new",
+                :method => 'post', class: "text-center border border-light p-5") do |f| %>
+                <!-- Drop-down list for Debit/Credit -->
+                <label>Transfer type</label>
+                <%= select_tag(:type, options_for_select([['Debit', 0], ['Credit', 1]], preselected_val), id: 'selectType', class: 'mb-5 form-control') %>
+
+                <!-- Amount, value has to be at least 0.01 -->
+                <label>Amount (<%= @currency.shortname %>)</label>
+                <%= f.number_field :amount, class: 'mb-5 form-control', step: 0.01, min:0.01 %>
+
+                <label id="labelForName"></label>
+                <%= f.text_field :receiver, class: 'mb-5 form-control' %>
+
+                <button class="btn btn-success btn-block" type="submit">Initiate Beneficiary Transfer</button>
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#labelForName").html("<%= nameVal %>");
+        $('#selectType').change(function() {
+            if ($('#selectType').val() == 1) {
+                $("#labelForName").html("Sender's Name");
+            } else {
+                $("#labelForName").html("Receiver's Name");
+            }
+        });
+    });
+</script>

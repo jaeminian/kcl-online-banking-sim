@@ -1,0 +1,42 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Breadcrumb trail under header -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= currency_admins_path %>">Manage Currencies</a></li>
+        <li class="breadcrumb-item"><a href="#">Edit</a></li>
+    </ol>
+</nav>
+
+
+<!-- Section: Content -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card ">
+
+            <div class="card-header">
+                <h2>Update Currency</h2>
+            </div>
+
+            <div class="card-body">
+                <div class="currencies new">
+                    <!-- Check for errors-->
+                    <%= render 'error_cur_admin' %>
+
+                    <!-- The form for updating this currency -->
+                    <%= form_for(@currency, :url => currency_admin_path(@currency)) do |f| %>
+                    <!-- Partial form with currency text fields -->
+                    <%= render(:partial=> 'form', :locals => {:f => f}) %>
+
+                    <div class="form-buttons">
+                        <%= f.submit "Update Currency", class: 'btn btn-warning'  %>
+                    </div>
+
+                    <% end %>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

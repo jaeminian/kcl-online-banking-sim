@@ -1,0 +1,15 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Display all errors of the account being saved to the database -->
+<% if @account.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@account.errors.count, "error") %>.<br>
+        <ul>
+        <% @account.errors.full_messages.each do |msg| %>
+        <li class='text-danger'><%= msg %></li>
+        <% end %>
+        </ul>
+    </div>
+  </div>
+<% end %>

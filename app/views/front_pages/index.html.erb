@@ -1,0 +1,425 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<style>
+    /*Font Family Used In Website*/
+    /*Roboto (Integrated From Google Fonts Library)*/
+    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        overflow-x: hidden;
+    }
+
+    body img {
+        max-width: 100%;
+    }
+
+    body .container {
+        width: 100%;
+        max-width: 1250px;
+    }
+
+    section,
+    footer {
+        float: left;
+        width: 100%;
+    }
+
+    a {
+        transition: all 0.4s ease-in-out;
+        -webkit-transition: all 0.4s ease-in-out;
+        cursor: pointer !important;
+        display: inline-block;
+        text-decoration: none !important;
+    }
+    .btn-primary{
+        background-color: #251F18 !important;
+    }
+
+
+    section.notice-sec a {
+        background: #145d8e;
+    }
+
+    section.notice-sec a {
+        background: #145d8e;
+        display: block;
+        padding: 15px 0px;
+        text-align: center;
+        color: white;
+        font-weight: 300;
+        font-size: 18px;
+        letter-spacing: 0.7px;
+    }
+
+
+    .notice-sec a b {
+        font-weight: 500;
+    }
+
+
+    section.banner-sec {
+        background: #14233c;
+        padding: 50px 0px;
+    }
+
+    .banner-image {
+        float: left;
+        width: 100%;
+    }
+
+    .banner-image img {
+        width: 96%;
+    }
+
+    .banner-text {
+        float: left;
+        width: 100%;
+    }
+
+    .banner-text h3 {
+        color: white;
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+
+    .banner-text p {
+        color: white;
+        font-weight: 300;
+        font-size: 25px;
+        letter-spacing: 0.7px;
+        line-height: 35px;
+        max-width: 90%;
+        margin-bottom: 35px;
+    }
+
+    .banner-text h6 a {
+        background: #251F18;
+        color: white;
+        font-weight: 500;
+        padding: 14px 35px;
+        font-size: 18px;
+        letter-spacing: 0.8px;
+        border-radius: 2px;
+        margin-right: 15px;
+    }
+
+    .banner-text {
+        float: left;
+        width: 100%;
+        margin-top: 150px;
+    }
+
+
+    section.cta-sec {
+        background: #f7f7f7;
+        padding: 70px 0px;
+    }
+
+    .cta-text {
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+
+    .cta-text h4 {
+        color: #14233c;
+        font-size: 35px;
+        font-weight: 500;
+        letter-spacing: 0.8px;
+        margin-bottom: 25px;
+    }
+
+    .cta-text p {
+        color: black;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.8px;
+    }
+
+    .cta-text h6 a img {
+        height: 50px;
+    }
+
+    .cta-text h6 a {
+        display: inline-block;
+        margin: 0px 6px;
+    }
+
+    .cta-text h6 {
+        margin-top: 25px;
+    }
+
+    section.copyrights {
+        background: #121f35;
+        padding: 70px 0px;
+    }
+
+    .copyrights h4 {
+        color: #4d5870;
+        font-weight: 400;
+        letter-spacing: 0.7px;
+        margin-bottom: 15px;
+    }
+
+    .copyrights p {
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        max-width: 800px;
+        line-height: 30px;
+        font-size: 16px;
+    }
+
+    .logo {
+        float: left;
+    }
+
+    .navbar-custom {
+        float: right;
+    }
+
+    .logo a img {
+        width: 150px;
+    }
+
+    .menu-item {
+        float: left;
+        margin-left: 40px;
+    }
+
+    .menu-item a {
+        color: white;
+        font-weight: 500;
+        letter-spacing: 0.7px;
+        font-size: 16px;
+        padding: 5px 0px;
+    }
+
+    .menu-btn a {
+        background: #2991cc;
+        color: white;
+        padding: 10px 30px;
+        letter-spacing: 1px;
+        border-radius: 30px;
+        margin-top: -5px;
+    }
+
+    section.notice-sec {}
+
+    .navbar-handler {
+        display: none;
+    }
+
+    /*Media Queries Of Website*/
+
+    /*Small Laptops*/
+    @media screen and (max-width:992px) and (min-width:768px) {}
+
+
+    /*Tablet Devices*/
+    @media screen and (max-width:767px) and (min-width:520px) {}
+
+
+
+
+    /*Mobile Devices*/
+    @media screen and (max-width:650px) and (min-width:320px) {
+
+        section.notice-sec a {
+            background: #145d8e;
+            display: block;
+            padding: 12px 0px;
+            text-align: center;
+            color: white;
+            font-weight: 300;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+        }
+
+        .banner-text {
+            float: left;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .banner-text h3 {
+            color: white;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .banner-text p {
+            color: white;
+            font-weight: 300;
+            font-size: 18px;
+            letter-spacing: 0.7px;
+            line-height: 28px;
+            max-width: 100%;
+            margin-bottom: 35px;
+        }
+
+        .banner-text h6 a {
+            background: #2991cc;
+            color: white;
+            font-weight: 500;
+            padding: 12px 30px;
+            font-size: 18px;
+            letter-spacing: 0.8px;
+            border-radius: 30px;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+
+        .cta-text h6 a img {
+            height: 46px;
+            margin-bottom: 10px;
+        }
+
+        .cta-text h4 {
+            color: #14233c;
+            font-size: 30px;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            margin-bottom: 25px;
+        }
+
+        .copyrights p {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            letter-spacing: 0.6px;
+            max-width: 800px;
+            line-height: 25px;
+            font-size: 14px;
+        }
+
+        .navbar-handler {
+            display: block;
+            float: right;
+            color: white;
+            font-weight: 400;
+            letter-spacing: 0.8px;
+            margin-top: 5px;
+        }
+
+        .menu-item {
+            float: left;
+            margin-left: 0px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+
+        section.notice-sec {
+            margin-top: 70px;
+        }
+    }
+
+
+
+</style>
+
+<!-- Notice Section Starts Here -->
+<section class="notice-sec ">
+    <a href="/covid"> <b> Coronavirus help and support. </b> Find out more </a>
+</section>
+<!-- Notice Section Starts Here -->
+
+
+<!-- Banner Section Starts Here -->
+<section class="banner-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 pull-right">
+                <div class="banner-image">
+                    <%= image_tag "banner-image.png" %>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                <div class="banner-text">
+                    <h3>Jackal Banking Making the Future Better </h3>
+                    <p> Spend, save and manage your money, all in one place.</p>
+                    <h6> <a href="/contact"> Get a Jackal Bank account </a>  <%= image_tag "fscs-logo.svg" %> </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Section Ends Here -->
+<%
+
+
+master_holder = [
+                    ["Current Account", "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nnx8YmFua3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=60", "Switch to Jackal today and get up to GBP 6,000 in cashback.", "/current",true],
+                    ["Credit Cards", "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Y3JlZGl0JTIwY2FyZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=60", "Get a Jackal Credit Card and earn cashback on daily spends.", "/cards/credit",true],
+                    ["Online Banking", "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Y29tcHV0ZXJ8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=60", "Use our online banking service to access your accounts.", "/login",false],
+                    ["Contact US", "https://mdbootstrap.com/img/Photos/Others/images/43.jpg", "Write, call or send a message. We are always there for you !!", "/contact",true],
+                    ["About US", "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80", "Learn more about why 5 million daily users trust our services. ", "/about",true]
+                ]
+%>
+<section class="cta-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cta-text">
+                    <h4> Services we are known for ... </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <% master_holder.each do |m| %>
+                <% # If in case the user is an Admin, then they can't bo redirected to an accounts page %>
+                <% if ((is_check_admin? && m[4] ) || !(is_check_admin?) ) %> 
+                <!-- Card -->
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt-4 mb-2">
+                    <div class="card">
+
+                        <!-- Card image -->
+                        <img class="card-img-top" src="<%= m[1] %>" alt="Card image - alt text not available">
+
+                        <!-- Card content -->
+                        <div class="card-body">
+
+                            <!-- Title -->
+                            <h4 class="card-title"><a><%= m[0] %></a></h4>
+                            <!-- Text -->
+                            <p class="card-text"><%= m[2] %></p>
+                            <!-- Button -->
+                            <a href="<%= m[3] %>" class="btn btn-primary">View</a>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Card -->
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+<hr>
+</section>
+
+
+<!-- Call To Action Section Starts Here -->
+
+<section class="cta-sec">
+    <div class="container">
+        <div class="cta-text">
+            <h4> Help us build the kind of bank you want to use </h4>
+            <p> Download the Jackal app on iOS or Android and join the 1.2M people who've changed the way they bank. </p>
+            <h6>
+                <a href=""> <%= image_tag "applestore.png" %> </a>
+                <a href=""> <%= image_tag "googlestore.png" %> </a>
+            </h6>
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section Ends Here -->
+
+<script>
+    $(document).ready(function() {
+        $("div#masterContainer").removeClass("container");
+        $(".toRemHomePage").hide();
+    });
+</script>

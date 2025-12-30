@@ -1,0 +1,57 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= accounts_path %>">Online Banking Portal</a></li>
+  </ol>
+</nav>
+<style>
+  .cardContainer {
+    background-color: rgb(39, 202, 189);
+    border: 5px solid rgb(124, 229, 233);
+  }
+
+  #currencyBox {
+    border-left-style: solid;
+    border-left-color: rgb(124, 229, 233);
+  }
+</style>
+
+<!-- Greet and guide the user -->
+<div class="jumbotron">
+    <h2 class="h1-responsive">Hello, <%= @user.username %></h2>
+    <hr class="my-2">
+    <p>Here is a quick glance at your bank accounts.
+    </p>
+
+</div>
+
+	<!-- Display each account belonging to the user -->
+  <% @accounts.each do |account| %>
+      <div class="card">
+				<!-- Card row -->
+          <div class="card-header">
+							<!-- Display total balance of the account -->
+              <% total = 0
+              Transaction.where(:account_id => account.id).each do |t|
+                total -= t.amount
+              end%>
+
+							<!-- Display the total balance of the account with the currency of the account -->
+              Balance: <%= Currency.find(account.curr_id).shortname %> <%= total %>
+          </div>
+					<!-- Card row -->
+          <div class="card-body">
+							<!-- Display account's name, account number, currency of the account, and the account's sortcode -->
+              <h5 class="card-title"><%= account.accname %></h5>
+              <p class="card-text">Number: <strong><%= account.accnumber %></strong></p>
+              <p class="card-text">Currency: <strong><%= Currency.find(account.curr_id).shortname %></strong></p>
+              <p class="card-text">Sort-Code: <strong><%= account.sortcode %></strong></p>
+
+							<!-- Link to the transactions url for the account -->
+              <a href="<%= "/transactions/#{account.id}" %>"><button type="button" class="action show btn btn-sm btn-primary">Show</button></a>
+
+          </div>
+      </div>
+    <br>
+  <% end %>

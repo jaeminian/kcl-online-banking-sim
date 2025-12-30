@@ -1,0 +1,111 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Breadcrumb trail under header -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= accounts_path %>">Online Banking Portal</a></li>
+        <li class="breadcrumb-item"><a href="#">Profile</a></li>
+    </ol>
+</nav>
+
+
+<br>
+<h1>Profile Page</h1>
+<hr>
+
+<!-- Section: Content -->
+<div class="row">
+    <!-- First column - Enable/Disable 2 Factor Authentication -->
+    <div class="col-lg-4 mb-4">
+        <div class="card text-white bg-dark">
+
+            <div class="card-header">
+                Security - 2 Factor Authentication
+            </div>
+
+            <!-- If the user doesn't have 2 Factor Authentication enabled-->
+            <% if (@securePass == "0")  %>
+            <div class="card-body text-center">
+
+                <!-- Check for errors-->
+                <% if(@secloginerror) %>
+                <p class="alert alert-danger"><%= @secloginerror %></p>
+                <hr>
+                <% end %>
+                <% if @user.errors.any? %>
+                <div id="error_explanation">
+                    <div class="alert alert-danger">
+                        The form contains <%= pluralize(@user.errors.count, "error") %>.<br>
+                        <ul>
+                            <% @user.errors.full_messages.each do |msg| %>
+                            <li class='text-danger'><%= msg %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+                <% end %>
+
+
+                <!-- The form for adding and enabling a second password for the user -->
+                <%= form_with url: "/user/secure" ,local: true do |f| %>
+                <%= f.label :seclogin, "Secondary Password:"%>
+                <%= f.text_field :seclogin , class: "form-control", placeholder: "Password"  %>
+                <hr>
+                <%= f.submit "Enable 2-Factor Authentication", class: "btn btn-danger" %>
+                <% end %>
+
+            </div>
+
+            <!-- If the user has 2 Factor Authentication enabled-->
+            <% else %>
+            <div class="card-body text-center">
+                <p class="alert alert-success">2-Factor Authentication is now enabled</p>
+                <hr>
+
+                <!-- The form for disabling and deleting the second password for the user -->
+                <%= form_with url: "/user/secure" ,local: true do |f| %>
+                <%= f.hidden_field :seclogin, value: "0" %>
+
+                <%= f.submit "Disable 2-Factor Authentication", class: "btn btn-success" %>
+                <% end %>
+
+            </div>
+            <% end %>
+
+        </div>
+    </div>
+
+    <!-- Second column - Details about user -->
+    <div class="col-lg-8 mb-4">
+        <div class="card">
+
+            <div class="card-header">
+                Personal Information
+            </div>
+
+            <% userHolder = [
+                  [[@user.fname, "First name"], [@user.lname, "Last name"]],
+                  [[@user.email, "Email address"], [@user.username, "Username"]],
+                  [[@user.created_at, "Created At"]]
+                ] %>
+
+
+            <div class="card-body text-left">
+                <div class="row">
+                    <% userHolder.each do |m| %>
+                        <% m.each do |n| %>
+                        <div class="col-12">
+                            <h4><%= n[1] %>: <strong> <%= n[0] %></strong>
+                            </h4>
+                            <hr>
+                        </div>
+                        <hr>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

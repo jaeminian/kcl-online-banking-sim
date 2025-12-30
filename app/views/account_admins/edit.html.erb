@@ -1,0 +1,35 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= account_admins_path %>">Manage Accounts</a></li>
+        <li class="breadcrumb-item"><a href="#">Edit <%= @account.accname %></a></li>
+    </ol>
+</nav>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card ">
+            <div class="card-header">
+                <h2>Update Account</h2>
+            </div>
+            <div class="card-body">
+								<!-- Renders the partial _error_acc_admin.html.erb -->
+                <%= render 'error_acc_admin' %>
+
+                <!-- An input form to update an account -->
+                <%= form_for(@account, :url => account_admin_path(@account)) do |f| %>
+
+								<!-- Renders the partial _form.html.erb -->
+                <%= render(:partial=> 'form', :locals => {:f => f}) %>
+
+                <div class="form-buttons">
+                    <%= f.submit "Update Account", class: 'btn btn-warning'  %>
+                </div>
+
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

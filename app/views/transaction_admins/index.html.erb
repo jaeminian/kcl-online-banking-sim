@@ -1,0 +1,91 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!--Display the page's path-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= transaction_admins_path %>">Manage Transactions</a></li>
+    </ol>
+</nav>
+
+<!--Admin information and create transaction button-->
+<div class="jumbotron">
+    <h2 class="h1-responsive">Manage Transactions</h2>
+    <p class="lead">Add/Edit/Delete transactions from this page.</p>
+    <hr class="my-2">
+    <p>Click below to add a new transaction/transfer.</p>
+    <%= link_to("Create transaction", new_transaction_admin_path, :class => 'btn btn-success btn-lg') %>
+</div>
+
+<!--Display all transactions with show/edit/delete options-->
+<table id="masterHolder" class="listing table table-bordered" summary="Account list">
+    <thead class="black white-text">
+        <tr>
+            <th>Date</th>
+            <th>Associated Account</th>
+            <th>Receiver Name</th>
+            <th>Currency</th>
+            <th>Credits</th>
+            <th>Debits</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @transactions.each do |t| %>
+        <%acc = Account.find(t.account_id)%>
+        <tr>
+            <td style="padding-left: 20px; color: black">
+                <%= link_to(t.created_at, transaction_admin_path(t)) %>
+            </td>
+            <td>
+                <%= acc.accnumber %>
+            </td>
+            <td>
+                <%= t.receiver %>
+            </td>
+            <td>
+                <%= Currency.find(acc.curr_id).shortname %>
+            </td>
+            <!-- Credits are stored as negative values-->
+            <td>
+                <% if t.amount < 0 %>
+                <%= t.amount * -1 %>
+                <% else %>
+                -
+                <% end %>
+            </td>
+            <!--Debits are stored as positive value-->
+            <td>
+                <% if t.amount >= 0 %>
+                <%= t.amount %>
+                <% else %>
+                -
+                <% end %>
+            </td>
+            <td class="actions">
+                <a href="<%= transaction_admin_path(t) %>"><button type="button" class="action show btn btn-sm btn-primary">Show</button></a>
+                <a href="<%= edit_transaction_admin_path(t) %>"><button type="button" class="action edit btn btn-sm btn-warning">Edit</button></a>
+                <a href="<%= delete_transaction_admin_path(t) %>"><button type="button" class="action edit btn btn-sm btn-danger">Delete</button></a>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<script>
+    var dataTable = null;
+    $(document).ready(function() {
+
+        dataTable = $('#masterHolder').DataTable({
+            "order": [
+                [0, "desc"]
+            ]
+        });
+        document.addEventListener("turbolinks:before-cache", function() {
+            if (dataTable !== null) {
+                dataTable.destroy()
+                dataTable = null
+            }
+        })
+    });
+</script>

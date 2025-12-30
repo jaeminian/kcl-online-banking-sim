@@ -1,0 +1,128 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Breadcrumbs Begin -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+    </ol>
+</nav>
+<!-- Breadcrumbs End -->
+
+<!-- Page Jumbotron Title-->
+<div class="jumbotron">
+    <h2 class="h1-responsive">Admin Console</h2>
+    <p class="lead">View Transaction Stats and manage UI theme colors from here.</p>
+</div>
+<!-- Page Jumbotron Ends -->
+
+<!-- Console Saving Errors -->
+<% if @console.errors.any? %>
+<div id="error_explanation">
+    <div class="alert alert-danger">
+        The form contains <%= pluralize(@console.errors.count, "error") %>.<br>
+        <ul>
+            <% @console.errors.full_messages.each do |msg| %>
+            <li class='text-danger'><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+<% end %>
+<!-- Console Saving Errors End-->
+
+
+<!-- Row -->
+<div class="row">
+
+    <!-- column card holder -->
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Header UI Handler</h5>
+                <% # Form Helper with Default values %>
+                <%= form_for(@console, :url => console_path(@console)) do |f| %>
+                    <label>Background Color "#5E503F"</label>
+                    <%= f.text_field(:header_b, class: 'mb-2 form-control' ) %>
+                    <label>Text Color "#fff"</label>
+                    <%= f.text_field(:header_t, class: 'mb-2 form-control' ) %>
+                    <hr>
+                    <div class="form-buttons">
+                        <%= f.submit "Save", class: 'btn btn-success'  %>
+                        <%= button_tag 'Cancel', type: 'reset', class: 'btn btn-danger' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <!-- column card holder -->
+
+    <!-- column card holder -->
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Footer UI Handler</h5>
+                <% # Form Helper with Default values %>
+                <%= form_for(@console, :url => console_path(@console)) do |f| %>
+                    <label>Background Color "#5E503F"</label>
+                    <%= f.text_field(:footer_b, class: 'mb-2 form-control' ) %>
+
+                    <label>Text Color "#fff"</label>
+                    <%= f.text_field(:footer_t, class: 'mb-2 form-control' ) %>
+                    <hr>
+                    <div class="form-buttons">
+                        <%= f.submit "Save", class: 'btn btn-success'  %>
+                        <%= button_tag 'Cancel', type: 'reset', class: 'btn btn-danger' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <!-- column card holder -->
+
+    <!-- column card holder -->
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Corona Support UI Handler</h5>
+                <% # Form Helper with Default values %>
+                <%= form_for(@console, :url => console_path(@console)) do |f| %>
+                    <label>Background Color "#251F18"</label>
+                    <%= f.text_field(:corona_b, class: 'mb-2 form-control' ) %>
+                    <label>Text Color "#fff"</label>
+                    <%= f.text_field(:corona_t, class: 'mb-2 form-control' ) %>
+                    <hr>
+                    <div class="form-buttons">
+                        <%= f.submit "Save", class: 'btn btn-success'  %>
+                        <%= button_tag 'Cancel', type: 'reset', class: 'btn btn-danger' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <!-- column card holder -->
+
+    <!-- column card holder -->
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Banner UI Handler</h5>
+                <% # Form Helper with Default values %>
+                <%= form_for(@console, :url => console_path(@console)) do |f| %>
+                    <label>Background Color "#C6AC8F"</label>
+                    <%= f.text_field(:banner_b, class: 'mb-2 form-control' ) %>
+                    <label>Text Color "#0A0908"</label>
+                    <%= f.text_field(:banner_t, class: 'mb-2 form-control' ) %>
+                    <hr>
+                    <div class="form-buttons">
+                        <%= f.submit "Save", class: 'btn btn-success'  %>
+                        <%= button_tag 'Cancel', type: 'reset', class: 'btn btn-danger' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <!-- column card holder -->
+
+</div>
+<!-- Row -->
+<br>

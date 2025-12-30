@@ -1,0 +1,17 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Input form fields -->
+<label>Account Name</label>
+<%= f.text_field(:accname, class: 'mb-2 form-control' ) %>
+
+<label>Account Number</label>
+<%= f.text_field(:accnumber, class: 'mb-2 form-control' ) %>
+
+<label>Sort Code</label>
+<%= f.text_field(:sortcode, class: 'mb-2 form-control', placeholder: "XX-XX-XX" ) %>
+
+<label>Currency</label>
+<%= collection_select(:account, :curr_id, Currency.all, :id, :shortname, {}, class: 'mb-2 form-control' ) %>
+
+<label>User</label>
+<%= collection_select(:account, :user_id, User.where(:admin => false), :id, :username,{}, class: 'mb-2 form-control' ) %>

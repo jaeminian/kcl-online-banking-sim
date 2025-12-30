@@ -1,0 +1,73 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">Current Account</li>
+    </ol>
+</nav>
+
+<!--Section: Content-->
+<section class="dark-grey-text">
+
+    <!-- Section heading -->
+    <h2 class="text-center font-weight-bold mb-4 pb-2">Current Accounts</h2>
+    <!-- Section description -->
+
+    <!-- Grid row -->
+    <div class="row">
+
+        <% accountHolder = [
+            ["fas fa-cash-register blue-text fa-2x", "Jackal’s Bank Account Elite", [
+                "Everyday finances made easy for you",
+                "With our Saver, earn 1.02% AER/gross",
+                "Apply for the benefit of an arranged overdraft"]],
+            ["fas fa-university pink-text fa-2x", "Jackal’s Student Bank Account", [
+                "Receive an arranged overdraft of £1500 interest free",
+                "Get yourself a student credit card with a credit limit of £750"]],
+            ["fas fa-child purple-text fa-2x", "Jackal’s Children Bank Account", [
+                "Open a savings account from the age of 5",
+                "Receive a MyAccount current account and a contactless debit card from the age of 13"]]
+        ] %>
+
+        <% accountHolder.each do |m| %>
+            <!-- Grid column -->
+            <div class="col-md-12">
+
+                <!-- Grid row -->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-2 col-md-3 col-2">
+                        <i class="<%= m[0] %>"></i>
+                    </div>
+
+                    <!-- Grid column -->
+                    <div class="col-lg-4 col-md-3 col-4">
+                        <h4 class="font-weight-bold"><%= m[1] %></h4>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-lg-6 col-md-6 col-6">
+                        <p>
+                            <ul>
+                                <% m[2].each do |text| %>
+                                    <li><%= text %></li>
+                                <% end %>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+                <!-- Grid row -->
+                <hr>
+            </div>
+            <!-- Grid column -->
+        <% end %>
+
+    </div>
+    <!-- Grid row -->
+
+</section>
+<!--Section: Content-->
+
+<div class="row" style="height:100px">
+</div>

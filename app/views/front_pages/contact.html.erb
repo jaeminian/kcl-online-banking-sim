@@ -1,0 +1,74 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">Contact</li>
+    </ol>
+</nav>
+<div class="container my-5 py-5 z-depth-1">
+
+
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+        <h3 class="font-weight-bold">Contact Us</h3>
+
+        <hr class="my-5">
+
+        <!--Grid row-->
+        <div class="row">
+
+            <!--Grid column-->
+            <div class="col-12">
+
+                <h4 class="font-weight-bold">Call or email</h4>
+
+                <p class="text-muted mb-4">Further information or any technical issues on online banking .</p>
+
+                <p class="font-weight-bold">Support:</p>
+
+                <p class="mb-2">+ 800 123 456</p>
+
+                <p class="mb-2"><a href="#">Contact support</a></p>
+
+                <p class="mb-4">Our technical support is available by phone or email from 11am to 11pm.</p>
+
+                <% masterHolder = [
+                    ["Mortgages:", nil, nil, " +44 502 2930", " +82 43 523 0211"],
+                    ["Car loan:", nil, nil, " +44 522 2912", " +82 33 573 0221"],
+                    ["Online banking:", nil, nil, " +44 502 2840", " +82 53 523 0245"],
+                    ["Credit cards:", nil, nil, " +44 502 6944", " +82 93 523 0233"],
+                    ["Current account:", nil, nil, " +44 502 0660", " +82 33 049 2941"],
+                    ["Sales:", "Our sales team is available by phone or email from 11am to 11pm.", ["mailto:sales@jackal.com", "sales@jackal.com"], " +44 502 2130",  "+82 33 623 0230"],
+                    ["General inquiries:", nil, ["mailto:info@jackal.com", "info@jackal.com"], " 700 3296", " + 82 33 623 1111"]
+                ] %>
+
+                <% masterHolder.each do |m| %>
+                    <hr>
+                    <p class="font-weight-bold"><%= m[0] %></p>
+
+                    <% if m[1] != nil %>
+                      <p class="mb-4"><%= m[1] %></p>
+                    <% end %>
+
+                    <% if m[2] != nil %>
+                      <p class="mb-2"><a href=<%= m[2][0] %>><%= m[2][1] %></a></p>
+                    <% end %>
+
+                    <p class="mb-2"><u>Within UK:</u><%= m[3] %></p>
+                    <p class="mb-2"><u>Outside UK:</u><%= m[4] %></p>
+                <% end %>
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>

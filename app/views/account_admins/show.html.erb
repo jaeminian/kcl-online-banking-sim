@@ -1,0 +1,89 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= account_admins_path %>">Manage Accounts</a></li>
+        <li class="breadcrumb-item"><a href="#">View <%= @account.accname %></a></li>
+    </ol>
+</nav>
+<%
+currency = Currency.find(@account.curr_id)
+%>
+
+<div class="card">
+    <!-- Display values of the selected accounts -->
+    <div class="card-body">
+        <h5 class="card-title"><%= @account.accname %></h5>
+        <p class="card-text">Number: <strong><%= @account.accnumber %></strong></p>
+        <p class="card-text">Currency: <strong><%= currency.shortname %></strong></p>
+        <p class="card-text">Sort-Code: <strong><%= @account.sortcode %></strong></p>
+        <p class="card-text">User Name: <strong><%= User.find(@account.user_id).fname %></strong></p>
+        <p class="card-text">Created: <strong><%= @account.created_at %></strong></p>
+        <p class="card-text">Updated: <strong><%= @account.updated_at %></strong></p>
+        <h3 id="balance">Balance: <span class="badge badge-primary"><%= @balance %></span></h3>
+    </div>
+</div>
+<hr>
+
+
+<!-- Transactions table for current account -->
+<table id="masterHolder" class="table table-bordered">
+    <thead class="black white-text">
+        <tr>
+            <th style="padding-left: 20px">Date</th>
+            <th>Receiver Name</th>
+            <th>Currency</th>
+            <th>Credits</th>
+            <th>Debits</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @transactions.each do |t| %>
+        <tr>
+            <th scope="row"><%= t.created_at %></th>
+            <td><%= t.receiver %></td>
+            <td>
+                <%= currency.shortname %>
+            </td>
+            <!-- Displays the credit if the amount transferred is negative (gaining money)
+               Multiple by -1 to represent as a positive number -->
+            <td>
+                <% if t.amount < 0 %>
+                <%= t.amount * -1 %>
+                <% else %>
+                -
+                <% end %>
+            </td>
+            <!-- Displays the debit if the amount transferred is positive (losing money) -->
+            <td>
+                <% if t.amount >= 0 %>
+                <%= t.amount %>
+                <% else %>
+                -
+                <% end %>
+            </td>
+
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<script>
+    var dataTable = null;
+    $(document).ready(function() {
+
+        dataTable = $('#masterHolder').DataTable({
+            "order": [
+                [0, "desc"]
+            ]
+        });
+        document.addEventListener("turbolinks:before-cache", function() {
+            if (dataTable !== null) {
+                dataTable.destroy()
+                dataTable = null
+            }
+        })
+    });
+</script>

@@ -1,0 +1,48 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!--Display the page's path-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+    <li class="breadcrumb-item"><a href="<%= transaction_admins_path %>">Manage Transactions</a></li>
+    <li class="breadcrumb-item"><a href="#">View</a></li>
+  </ol>
+</nav>
+
+<!--Display the transaction infromation-->
+<div class="card">
+  <h5 class="card-header h2">Transaction# <%=@transaction.id%></h5>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <h4>ID: <strong><%= @transaction.id %></strong></h4>
+        <hr>
+      </div>
+
+      <div class="col-12">
+        <h4>Date: <strong><%= @transaction.created_at %></strong></h4>
+        <hr>
+      </div>
+
+      <div class="col-12">
+        <h4>Account Number: <strong><%= Account.find(@transaction.account_id).accnumber %></strong></h4>
+        <hr>
+      </div>
+
+      <div class="col-12">
+        <h4>Currency: <strong><%= Currency.find(Account.find(@transaction.account_id).curr_id).bigname %></strong></h4>
+        <hr>
+      </div>
+
+      <div class="col-12">
+        <h4>Receiver Name: <strong><%= @transaction.receiver %></strong></h4>
+        <hr>
+      </div>
+
+      <div class="col-12">
+        <h4>Amount: <strong><%= @transaction.amount %></strong></h4>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Breadcrumb trail under header -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= user_admins_path %>">Manage Users</a></li>
+    </ol>
+</nav>
+
+
+<!-- Section: Content -->
+<div class="jumbotron">
+    <h2 class="h1-responsive">Manage Users</h2>
+    <hr class="my-2">
+    <p>Click below to add a new User.
+    </p>
+    <%= link_to("Add New User", new_user_admin_path, :class => 'btn btn-success btn-lg') %>
+
+</div>
+
+<!-- Section: Content -->
+<div class="table-responsive users index">
+
+    <!-- List of all users in the database -->
+    <table id="masterHolder" class="table listing" summary="User List">
+
+        <thead class="black white-text">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Admin?</th>
+                <th>2FA?</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @users.each do |user| %>
+            <tr>
+                <td><%= user.fname %></td>
+                <td><%= user.lname %></td>
+                <td><%= user.email %></td>
+                <td><%= user.username %></td>
+                <td><%= (user.admin ? "Yes" : "No")%></td>
+                <td><%= (user.securelogin != "0" ? "Yes" : "No")%></td>
+                <td><%= user.created_at %></td>
+                <td><%= user.updated_at %></td>
+                <!-- Buttons for all user_admin actions -->
+                <td class="actions">
+                    <a href="<%= user_admin_path(user) %>"><button type="button" class="action show btn btn-sm btn-primary">Show</button></a>
+                    <a href="<%= edit_user_admin_path(user) %>"><button type="button" class="action edit btn btn-sm btn-warning">Edit</button></a>
+                    <a href="<%= "/user_admin/#{user.id}/edit_password" %>"><button type="button" class="action edit btn btn-sm btn-purple">Change Password</button></a>
+                    <a href="<%= delete_user_admin_path(user) %>"><button type="button" class="action edit btn btn-sm btn-danger">Delete</button></a>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    var dataTable = null;
+    $(document).ready(function() {
+
+        dataTable = $('#masterHolder').DataTable({
+            "order": [
+                [4, "desc"],
+                [0, "asc"]
+            ]
+        });
+        document.addEventListener("turbolinks:before-cache", function() {
+            if (dataTable !== null) {
+                dataTable.destroy()
+                dataTable = null
+            }
+        })
+    });
+</script>

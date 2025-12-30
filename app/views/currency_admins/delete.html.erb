@@ -1,0 +1,54 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<!-- Breadcrumb trail under header -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Admin Panel</a></li>
+        <li class="breadcrumb-item"><a href="<%= currency_admins_path %>">Manage Currencies</a></li>
+        <li class="breadcrumb-item"><a href="#">Delete</a></li>
+    </ol>
+</nav>
+
+
+<!-- Section: Content -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card ">
+
+            <div class="card-header">
+                <h2>Delete Currency</h2>
+            </div>
+
+            <div class="card-body">
+                <div class="accounts new">
+                    <!-- Don't delete currency if there is an account using it-->
+                    <% if Account.where(:curr_id => @currency.id).length > 0 %>
+                    <div id="error_explanation">
+                        <div class="alert alert-danger">
+                            Cannot delete: An existing account uses this currency
+                        </div>
+                    </div>
+                    <!-- Else, delete this currency-->
+                    <% else %>
+                    <%= form_for(@currency, :url => currency_admin_path(@currency) , :method => 'delete') do |f| %>
+
+                    <p>Are you sure you want to delete this Currency?</p>
+                    <h3><%= @currency.bigname %> </h3>
+
+                    <!-- Confirm deletion-->
+                    <div class="form-buttons">
+                        <%= f.submit "Yes, Delete this Currency", class: 'btn btn-danger'  %>
+                    </div>
+
+                    <!--Cancel deletion-->
+                    <%= link_to("No, Take me back", currency_admins_path, :class => 'btn btn-success') %>
+
+                    <% end %>
+
+                    <% end %>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

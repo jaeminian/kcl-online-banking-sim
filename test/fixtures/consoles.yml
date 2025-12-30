@@ -1,0 +1,13 @@
+## Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) 
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  footer_b: black
+  footer_t: white
+  header_b: black
+  header_t: white
+  corona_b: black
+  corona_t: white
+  banner_b: black
+  banner_t: white

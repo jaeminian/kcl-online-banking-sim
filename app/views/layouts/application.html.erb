@@ -1,0 +1,111 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<%
+  console = Console.find_by_id(1)
+  if(!console)
+		# Default console values
+    console = Console.new(
+                footer_b: "#1c2331",
+                footer_t: "#fff",
+                header_b: "#1c2331",
+                header_t: "#fff",
+                corona_b: "#145d8e",
+                corona_t: "#fff",
+                banner_b: "#14233c",
+                banner_t: "#fff"
+            )
+  end
+
+	# Assign values according to console values
+  footer = [console.footer_b, console.footer_t]
+  header = [console.header_b, console.header_t]
+  corona = [console.corona_b, console.corona_t]
+  banner = [console.banner_b, console.banner_t]
+%>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jackal Bank Online Banking System</title>
+    <%= favicon_link_tag asset_path('small_logo.png') %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Datatables CSS -->
+    <link href="/css/addons/datatables.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+    <!-- Core Datatables JavaScript -->
+    <script type="text/javascript" src="/js/addons/datatables.min.js"></script>
+
+    <style>
+        .footer-back-color-rails {
+            background-color: <%=footer[0] %>;
+        }
+
+        .footer-text-color-rails,
+        footer.page-footer a,
+        footer.page-footer .footer-copyright {
+            color: <%=footer[1] %>;
+        }
+
+        .header-back-color-rails {
+            background-color: <%=header[0] %>;
+        }
+
+        .navbar.navbar-dark .breadcrumb .nav-item .nav-link,
+        .navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+            color: <%=header[1] %>;
+        }
+
+        .banner-sec {
+            background-color: <%=banner[0] %> !important;
+
+        }
+
+        .banner-text h3, .banner-text p {
+            color: <%= banner[1] %> !important;
+        }
+
+        section.notice-sec a {
+            background-color: <%=corona[0] %> !important;
+            color: <%=corona[1] %> !important;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+		<!-- Renders the partial _header.html.erb -->
+    <%= render 'layouts/header' %>
+
+    <main>
+				<!-- Display each message in the flash variable -->
+        <div id="masterContainer" class='container mt-3 pt-5'>
+            <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>"><%= message %></div>
+            <% end %>
+            <%= yield %>
+        </div>
+    </main>
+
+		<!-- Renders the partial _footer.html.erb -->
+    <%= render 'layouts/footer' %>
+</body>
+
+</html>

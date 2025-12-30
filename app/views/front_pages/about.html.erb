@@ -1,0 +1,101 @@
+<!-- Authors: Ayan Ahmad (K19002255), Kevin Quah (k1921877), Jae Min An (k19034574), Daniela Stanciu (k1922053), Mihaela Peneva (k19026170) -->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">About</li>
+    </ol>
+</nav>
+
+
+    <!--Section: Content-->
+    <section class="dark-grey-text">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-12">
+
+                <!-- Card -->
+                <div class="card card-cascade wider reverse">
+
+                    <!-- Card image -->
+                    <div class="view view-cascade overlay">
+                        <%= image_tag("bank_back.jpg", class: "card-img-top") %>
+                        <a href="">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <!-- Card content -->
+                    <div class="card-body card-body-cascade text-center">
+                        <!-- Title -->
+                        <h3 class="font-weight-bold"><a>Bank Jackal aka The Future</a></h3>
+                    </div>
+                    <!-- Card content -->
+
+                </div>
+                <!-- Card -->
+
+                <!-- Excerpt -->
+                <div class="mt-5">
+
+                    <p>Bank Jackal is one of the world’s largest banking and financial services organisations.
+                        We serve more than 5 million customers through our global businesses:
+                        Not only are we commited to our clients, but we live by the phrase "Change is the only constant".
+                    </p>
+                    <div class="row">
+                        <% masterHolder = [
+                            ["Our strategy", "https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg", "We aim to be the world’s leading international bank.
+                                We help personal, wealth and corporate clients thrive globally and in
+                                higher-returning markets."],
+                            ["Our Values", "https://images.freeimages.com/images/large-previews/077/blue-strings-2-1542739.jpg", "At Bank Jackal, We want to achieve good results in a way
+                                that treats our customers fairly and helps to strengthen communities
+                                and ensure a properly functioning financial system."],
+                            ["Company history", "https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8aGlzdG9yeSUyMGNhbGN1bGF0aW9uc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=60", "For decades we have connected customers to opportunities.
+                                We enable businesses to thrive and economies to prosper, helping people
+                                to realise their ambitions."]
+                        ] %>
+
+                        <% masterHolder.each do |m| %>
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <!-- Card -->
+                                <div class="card">
+
+                                    <!-- Card image -->
+                                    <div class="view overlay">
+                                        <img class="card-img-top" src=<%= m[1] %> alt="Card image cap">
+                                        <a href="#!">
+                                            <div class="mask rgba-white-slight"></div>
+                                        </a>
+                                    </div>
+
+                                    <!-- Card content -->
+                                    <div class="card-body">
+
+                                        <!-- Title -->
+                                        <h4 class="card-title"><%= m[0] %></h4>
+                                        <!-- Text -->
+                                        <p class="card-text"><%= m[2] %></p>
+
+                                    </div>
+
+                                </div>
+                                <!-- Card -->
+                            </div>
+                        <% end %>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+        <hr class="mb-5 mt-4">
+
+    </section>
+    <!--Section: Content-->
