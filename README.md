@@ -61,3 +61,45 @@ bundle install
 rails db:migrate
 rails db:reset
 rails server
+
+Then visit:
+
+Customer portal: http://localhost:3000/
+
+Admin portal: http://localhost:3000/admin
+
+Demo / Deployment (Optional)
+
+If you have a deployed instance, place the links here.
+
+Security note: If this repository is public, avoid committing secrets and avoid sharing real credentials.
+Use demo-only accounts with non-sensitive data.
+
+Customer: <DEPLOYED_URL>
+
+Admin: <DEPLOYED_URL>/admin
+
+Test
+rails test
+
+Credits / References
+
+Some implementation ideas and learning resources:
+
+Ruby on Rails Guides (testing, validations, layouts)
+
+BCrypt documentation
+
+Various web development references used during the course (see legacy reference list if needed)
+
+Team (KCL Group Project)
+
+Ayan Ahmad (K19002255)
+
+Jae Min An (K19034574)
+
+Mihaela Peneva (K19026170)
+
+Kevin Quah (K1921877)
+
+Daniela Stanciu (K1922053)
