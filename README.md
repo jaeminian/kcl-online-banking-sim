@@ -73,15 +73,11 @@ Then visit:
 
 ---
 
-## Demo / Deployment (Optional)
+## Demo / Deployment
 
-If you have a deployed instance, place the links here.
+This repo is public for portfolio purposes.  
+The original course deployment may be offline; please run locally using the steps below.
 
-> Security note: If this repository is public, avoid committing secrets and avoid sharing real credentials.  
-> Use demo-only accounts with non-sensitive data.
-
-- Customer: `<DEPLOYED_URL>`
-- Admin: `<DEPLOYED_URL>/admin`
 
 ---
 
